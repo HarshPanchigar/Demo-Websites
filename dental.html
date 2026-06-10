@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maninagar Health Clinic | Premium Medical Care</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .page-content { animation: fadeIn 0.6s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-bg, .page-hero-bg {
+            background-color: #0f172a;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+    
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function navigateTo(pageId) {
+            // Hide all pages and show the target page
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Update desktop nav styling
+            document.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.remove('text-blue-600', 'font-semibold', 'border-b-2', 'border-blue-600');
+                el.classList.add('text-gray-600');
+            });
+            
+            // Apply active styles to the clicked link
+            document.querySelectorAll(`[data-target="${pageId}"]`).forEach(el => {
+                if(el.classList.contains('nav-link')) {
+                    el.classList.remove('text-gray-600');
+                    el.classList.add('text-blue-600', 'font-semibold', 'border-b-2', 'border-blue-600');
+                }
+            });
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-28">
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-md">
+                        <i class="fa-solid fa-house-medical text-xl sm:text-2xl text-white"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight leading-none mb-1">Maninagar</span>
+                        <span class="text-sm sm:text-lg font-bold text-blue-600 tracking-widest uppercase leading-none">Health Clinic</span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-10 h-full">
+                    <button data-target="home" onclick="navigateTo('home')" class="nav-link h-full flex items-center text-blue-600 font-semibold border-b-2 border-blue-600 text-lg transition tracking-wide">Home</button>
+                    <button data-target="about" onclick="navigateTo('about')" class="nav-link h-full flex items-center text-gray-600 hover:text-blue-600 text-lg transition tracking-wide">Our Doctors</button>
+                    <button data-target="services" onclick="navigateTo('services')" class="nav-link h-full flex items-center text-gray-600 hover:text-blue-600 text-lg transition tracking-wide">Services</button>
+                    <button data-target="patient-info" onclick="navigateTo('patient-info')" class="nav-link h-full flex items-center text-gray-600 hover:text-blue-600 text-lg transition tracking-wide">Patient Info</button>
+                    <button onclick="navigateTo('contact')" class="btn-primary bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center">
+                        Book Appointment <i class="fa-solid fa-arrow-right ml-3"></i>
+                    </button>
+                </div>
+
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-900 hover:text-blue-600 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-2xl">
+            <div class="flex flex-col px-6 py-6 space-y-6">
+                <button onclick="navigateTo('home')" class="text-left text-gray-800 font-bold text-xl hover:text-blue-600 transition">Home</button>
+                <button onclick="navigateTo('about')" class="text-left text-gray-800 font-bold text-xl hover:text-blue-600 transition">Our Doctors</button>
+                <button onclick="navigateTo('services')" class="text-left text-gray-800 font-bold text-xl hover:text-blue-600 transition">Services</button>
+                <button onclick="navigateTo('patient-info')" class="text-left text-gray-800 font-bold text-xl hover:text-blue-600 transition">Patient Info</button>
+                <button onclick="navigateTo('contact')" class="bg-blue-600 text-white px-6 py-4 rounded-lg font-bold hover:bg-blue-800 shadow-lg transition-all text-lg flex items-center justify-center w-full mt-4">
+                    Book Appointment <i class="fa-solid fa-arrow-right ml-3"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="page-content">
+        
+        <div class="hero-bg py-24 sm:py-40 lg:py-56">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl">
+                    <div class="flex flex-wrap items-center gap-2 mb-8">
+                        <span class="bg-blue-100 text-blue-800 text-xs sm:text-sm font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-sm"><i class="fa-solid fa-award mr-2"></i> #1 Rated in Ahmedabad</span>
+                        <span class="bg-green-100 text-green-800 text-xs sm:text-sm font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-sm"><i class="fa-solid fa-door-open mr-2"></i> Accepting New Patients</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 sm:text-7xl leading-tight mb-6 sm:mb-8">
+                        Modern Medicine. <br><span class="text-blue-600">Compassionate Care.</span>
+                    </h1>
+                    <p class="text-lg sm:text-2xl text-gray-700 font-medium leading-relaxed mb-8 sm:mb-12 max-w-2xl">
+                        Providing the Maninagar community with elite, multi-specialty healthcare under one roof. No long waits, just exceptional care.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                        <button onclick="navigateTo('contact')" class="bg-blue-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-lg sm:text-xl hover:bg-blue-800 shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center">
+                            <i class="fa-regular fa-calendar-check mr-3 text-2xl"></i> Schedule Visit
+                        </button>
+                        <button onclick="navigateTo('services')" class="bg-white text-gray-800 border-2 border-gray-200 px-8 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-lg sm:text-xl hover:border-blue-600 hover:text-blue-600 shadow-lg transition-all flex items-center justify-center">
+                            Explore Services
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-xl relative z-10 -mt-10 sm:-mt-16 mx-4 sm:mx-auto max-w-7xl rounded-2xl overflow-hidden border border-gray-100">
+            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                <div class="p-6 sm:p-10 flex items-center hover:bg-gray-50 transition duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4 sm:mr-6 flex-shrink-0">
+                        <i class="fa-solid fa-user-doctor text-2xl sm:text-3xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg sm:text-xl text-gray-900 mb-1">Expert Doctors</h4>
+                        <p class="text-gray-500 text-sm sm:text-lg">Board-certified specialists</p>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-10 flex items-center hover:bg-gray-50 transition duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4 sm:mr-6 flex-shrink-0">
+                        <i class="fa-solid fa-clock-rotate-left text-2xl sm:text-3xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg sm:text-xl text-gray-900 mb-1">Fast Appointments</h4>
+                        <p class="text-gray-500 text-sm sm:text-lg">Same-day slots available</p>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-10 flex items-center hover:bg-gray-50 transition duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4 sm:mr-6 flex-shrink-0">
+                        <i class="fa-solid fa-microscope text-2xl sm:text-3xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg sm:text-xl text-gray-900 mb-1">In-House Labs</h4>
+                        <p class="text-gray-500 text-sm sm:text-lg">Accurate, rapid diagnostics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-20 sm:py-32 bg-gray-50 mt-16 sm:mt-0">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-20 items-center">
+                    <div class="relative order-2 lg:order-1">
+                        <div class="absolute inset-0 bg-blue-600 rounded-3xl transform -translate-x-4 sm:-translate-x-6 translate-y-4 sm:translate-y-6 opacity-10"></div>
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1000&q=80" alt="Doctor Consultation" class="relative rounded-3xl shadow-2xl w-full object-cover h-[400px] sm:h-[650px]">
+                        
+                        <div class="absolute -bottom-6 -right-6 sm:-bottom-10 sm:-right-10 bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-gray-100 max-w-[250px] sm:max-w-xs hidden md:block">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <i class="fa-solid fa-heart-circle-check text-3xl sm:text-4xl text-green-500"></i>
+                                <h4 class="text-3xl sm:text-4xl font-extrabold text-gray-900">10k+</h4>
+                            </div>
+                            <p class="text-base sm:text-lg text-gray-600 font-medium">Happy patients treated in Ahmedabad since 2015.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-10 order-1 lg:order-2">
+                        <span class="text-blue-600 font-bold tracking-widest uppercase mb-4 block text-sm sm:text-base">About Our Practice</span>
+                        <h2 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 sm:mb-8 leading-tight">Healthcare Built Around <br class="hidden sm:block"><span class="text-blue-600">Your Life.</span></h2>
+                        
+                        <p class="text-lg sm:text-xl text-gray-600 leading-relaxed sm:leading-loose mb-6 sm:mb-8">
+                            We believe that effective healthcare is a partnership built on trust, empathy, and absolute transparency. You aren't just a chart to us; you are a neighbor.
+                        </p>
+                        <p class="text-lg sm:text-xl text-gray-600 leading-relaxed sm:leading-loose mb-10 sm:mb-12">
+                            Our clinic brings together the finest medical minds and the latest technology. From routine checkups to complex chronic condition management, our dedicated medical professionals take the time to understand your unique health history.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 sm:gap-10 mb-10 sm:mb-12 border-t border-gray-200 pt-8 sm:pt-10">
+                            <div>
+                                <i class="fa-solid fa-calendar-check text-3xl sm:text-4xl text-blue-600 mb-3 sm:mb-4"></i>
+                                <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">15+ Years</h4>
+                                <p class="text-gray-500 text-sm sm:text-lg">Of Clinical Excellence</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-user-nurse text-3xl sm:text-4xl text-blue-600 mb-3 sm:mb-4"></i>
+                                <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">12+ Specialists</h4>
+                                <p class="text-gray-500 text-sm sm:text-lg">Under One Roof</p>
+                            </div>
+                        </div>
+                        
+                        <button onclick="navigateTo('about')" class="w-full sm:w-auto bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-900 hover:text-white transition-all text-center">
+                            More About Us
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-20 sm:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+                    <span class="text-blue-600 font-bold tracking-widest uppercase mb-4 block">Our Expertise</span>
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 sm:mb-8">Comprehensive Services</h2>
+                    <p class="text-lg sm:text-2xl text-gray-600 leading-relaxed">Whether you need a routine physical or immediate urgent care, we have the specialized staff and equipment to treat you efficiently.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 flex flex-col">
+                        <img src="https://plus.unsplash.com/premium_photo-1673953509975-576678fa6710?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R2VuZXJhbCUyME1lZGljaW5lfGVufDB8fDB8fHww" alt="General Medicine" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="p-8 sm:p-10 flex flex-col flex-grow">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-md flex items-center justify-center -mt-14 sm:-mt-16 mb-6 relative z-10 border border-gray-100">
+                                <i class="fa-solid fa-stethoscope text-xl sm:text-2xl text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">General Medicine</h3>
+                            <p class="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 flex-grow">Complete preventative care, annual physicals, and ongoing management for chronic conditions like diabetes and hypertension.</p>
+                            <button onclick="navigateTo('services')" class="text-blue-600 font-bold text-lg flex items-center hover:text-blue-800">Learn More <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800&q=80" alt="Pediatrics" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="p-8 sm:p-10 flex flex-col flex-grow">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-md flex items-center justify-center -mt-14 sm:-mt-16 mb-6 relative z-10 border border-gray-100">
+                                <i class="fa-solid fa-baby text-xl sm:text-2xl text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Pediatric Care</h3>
+                            <p class="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 flex-grow">Compassionate, gentle care for infants to teens. Including wellness checks, immunizations, and rapid sick visits.</p>
+                            <button onclick="navigateTo('services')" class="text-blue-600 font-bold text-lg flex items-center hover:text-blue-800">Learn More <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80" alt="Diagnostics" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="p-8 sm:p-10 flex flex-col flex-grow">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-md flex items-center justify-center -mt-14 sm:-mt-16 mb-6 relative z-10 border border-gray-100">
+                                <i class="fa-solid fa-vial-virus text-xl sm:text-2xl text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">On-Site Diagnostics</h3>
+                            <p class="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 flex-grow">No need to travel to a separate lab. Get your bloodwork, X-rays, and point-of-care testing done immediately during your visit.</p>
+                            <button onclick="navigateTo('services')" class="text-blue-600 font-bold text-lg flex items-center hover:text-blue-800">Learn More <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-bg py-24 sm:py-40 text-center text-white relative">
+            <div class="absolute inset-0 bg-blue-900 opacity-80"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-4">
+                <h2 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 sm:mb-8 leading-tight">Your Health Can't Wait.</h2>
+                <p class="text-lg sm:text-2xl text-blue-100 mb-8 sm:mb-12 leading-relaxed">Take the first step towards better health today. Our team is ready to provide you with the care you deserve.</p>
+                <button onclick="navigateTo('contact')" class="w-full sm:w-auto bg-white text-blue-900 px-8 sm:px-12 py-5 sm:py-6 rounded-lg font-extrabold text-xl sm:text-2xl hover:bg-gray-100 shadow-2xl transition transform hover:scale-105">
+                    Book Your Appointment Now
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="about" class="page-content hidden flex-grow bg-white pb-20 sm:pb-32">
+        <div class="page-hero-bg py-24 sm:py-32 text-center text-white relative px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6">Meet Our Medical Team</h1>
+            <p class="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed">Expert specialists dedicated to providing personalized, compassionate healthcare for you and your family.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-32">
+            <div class="flex flex-col md:flex-row gap-10 sm:gap-16 items-center mb-16 sm:mb-24 pb-16 sm:pb-24 border-b border-gray-100">
+                <div class="w-full md:w-5/12">
+                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800&q=80" alt="Dr. Aarav Patel" class="rounded-3xl shadow-2xl w-full object-cover h-[400px] sm:h-[500px]">
+                </div>
+                <div class="w-full md:w-7/12">
+                    <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">Dr. Aarav Patel</h2>
+                    <p class="text-blue-600 font-bold text-lg sm:text-xl mb-6 sm:mb-8 uppercase tracking-wider">Chief Medical Officer | General Medicine</p>
+                    <p class="text-gray-600 text-lg sm:text-xl leading-relaxed sm:leading-loose mb-6 sm:mb-8">
+                        With over 15 years of experience in internal medicine, Dr. Patel specializes in preventative health, comprehensive physicals, and managing complex chronic diseases such as diabetes and hypertension. 
+                    </p>
+                    <p class="text-gray-600 text-lg sm:text-xl leading-relaxed sm:leading-loose mb-8 sm:mb-10">
+                        He completed his residency at one of the nation's premier medical institutes. His philosophy revolves around optimizing long-term vitality, not just treating immediate symptoms.
+                    </p>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 mb-8 sm:mb-10">
+                        <span class="bg-gray-100 text-gray-700 px-4 sm:px-6 py-3 rounded-lg text-base sm:text-lg font-medium text-center"><i class="fa-solid fa-graduation-cap text-blue-500 mr-2"></i> MBBS, MD</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 sm:px-6 py-3 rounded-lg text-base sm:text-lg font-medium text-center"><i class="fa-solid fa-language text-blue-500 mr-2"></i> English, Hindi, Gujarati</span>
+                    </div>
+                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto bg-blue-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-lg sm:text-xl hover:bg-blue-700 shadow-xl transition-all">Schedule Consultation</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10 sm:gap-16 items-center flex-col-reverse md:flex-row-reverse">
+                <div class="w-full md:w-5/12 mt-10 md:mt-0">
+                    <img src="https://plus.unsplash.com/premium_photo-1661580574627-9211124e5c3f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZG9jdG9yfGVufDB8fDB8fHww" alt="Dr. Sneha Desai" class="rounded-3xl shadow-2xl w-full object-cover h-[400px] sm:h-[500px]">
+                </div>
+                <div class="w-full md:w-7/12">
+                    <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">Dr. Sneha Desai</h2>
+                    <p class="text-blue-600 font-bold text-lg sm:text-xl mb-6 sm:mb-8 uppercase tracking-wider">Head Pediatrician</p>
+                    <p class="text-gray-600 text-lg sm:text-xl leading-relaxed sm:leading-loose mb-6 sm:mb-8">
+                        Dr. Desai has been caring for the youngest members of our community for over a decade. Her warm, gentle approach makes visiting the doctor a stress-free experience for children and parents alike.
+                    </p>
+                    <p class="text-gray-600 text-lg sm:text-xl leading-relaxed sm:leading-loose mb-8 sm:mb-10">
+                        She specializes in early childhood development, comprehensive immunization management, nutritional counseling, and treating acute childhood illnesses.
+                    </p>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 mb-8 sm:mb-10">
+                        <span class="bg-gray-100 text-gray-700 px-4 sm:px-6 py-3 rounded-lg text-base sm:text-lg font-medium text-center"><i class="fa-solid fa-graduation-cap text-blue-500 mr-2"></i> MBBS, DCH</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 sm:px-6 py-3 rounded-lg text-base sm:text-lg font-medium text-center"><i class="fa-solid fa-language text-blue-500 mr-2"></i> English, Hindi, Gujarati</span>
+                    </div>
+                    <button onclick="navigateTo('contact')" class="w-full sm:w-auto bg-blue-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-lg sm:text-xl hover:bg-blue-700 shadow-xl transition-all">Schedule Consultation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="services" class="page-content hidden flex-grow bg-white pb-20 sm:pb-32">
+        <div class="page-hero-bg py-24 sm:py-32 text-center text-white relative px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6">Our Medical Services</h1>
+            <p class="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed">From routine preventative care to advanced diagnostics, we provide complete family healthcare under one roof.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 sm:space-y-32 mt-16 sm:mt-32">
+            <div class="flex flex-col lg:flex-row gap-10 sm:gap-16 items-center">
+                <div class="lg:w-1/2 w-full">
+                    <img src="https://plus.unsplash.com/premium_photo-1671721439617-491242a0507f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8QWR1bHQlMjBHZW5lcmFsJTIwTWVkaWNpbmV8ZW58MHx8MHx8fDA%3D" alt="Adult Medicine" class="rounded-3xl shadow-2xl w-full h-[350px] sm:h-[500px] object-cover">
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-stethoscope text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6"></i>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Adult General Medicine</h2>
+                    </div>
+                    <p class="text-lg sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed sm:leading-loose">Proactive, preventative health solutions to optimize adult health across all stages of life. We focus on treating the root cause, not just the symptoms.</p>
+                    <ul class="space-y-6 text-base sm:text-lg">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Annual Physicals</strong> 
+                                <span class="text-gray-600">Comprehensive biometric assessments and lab work to catch issues early.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Chronic Care Management</strong> 
+                                <span class="text-gray-600">Long-term treatment strategies for hypertension, diabetes, and cholesterol.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Acute Illness</strong> 
+                                <span class="text-gray-600">Fast, effective treatment for sudden flus, infections, and minor injuries.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-10 sm:gap-16 items-center flex-col-reverse lg:flex-row-reverse">
+                <div class="lg:w-1/2 w-full mt-10 lg:mt-0">
+                    <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=1000&q=80" alt="Pediatrics" class="rounded-3xl shadow-2xl w-full h-[350px] sm:h-[500px] object-cover">
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-baby text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6"></i>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Pediatric Care</h2>
+                    </div>
+                    <p class="text-lg sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed sm:leading-loose">A warm, inclusive setting focused on gentle acute care and long-term developmental wellness for your growing children.</p>
+                    <ul class="space-y-6 text-base sm:text-lg">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Child Immunizations</strong> 
+                                <span class="text-gray-600">Safe, timely completion of all required and recommended vaccines.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Developmental Tracking</strong> 
+                                <span class="text-gray-600">Monitoring physical, emotional, and cognitive growth milestones.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Rapid Sick Visits</strong> 
+                                <span class="text-gray-600">Immediate, comforting care for high fevers, earaches, and common childhood illnesses.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-10 sm:gap-16 items-center">
+                <div class="lg:w-1/2 w-full">
+                    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80" alt="Diagnostics" class="rounded-3xl shadow-2xl w-full h-[350px] sm:h-[500px] object-cover">
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-microscope text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6"></i>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">On-Site Diagnostics & Labs</h2>
+                    </div>
+                    <p class="text-lg sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed sm:leading-loose">We eliminate the friction of external referrals. Receive high-quality tests right here in our clinic, drastically accelerating your time-to-diagnosis.</p>
+                    <ul class="space-y-6 text-base sm:text-lg">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Comprehensive Blood Work</strong> 
+                                <span class="text-gray-600">Complete Blood Count (CBC), lipid panels, and thyroid testing.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Digital X-Ray</strong> 
+                                <span class="text-gray-600">Advanced, low-radiation imaging for respiratory and bone issue assessments.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-xl sm:text-2xl text-blue-500 mt-1 mr-4"></i>
+                            <div>
+                                <strong class="text-gray-900 block mb-1">Point-of-Care Testing</strong> 
+                                <span class="text-gray-600">Rapid results for Flu, Strep A, and other immediate infectious diagnostic needs.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="patient-info" class="page-content hidden flex-grow bg-gray-50 pb-20 sm:pb-32">
+        <div class="page-hero-bg py-24 sm:py-32 text-center text-white relative px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6">Patient Resources</h1>
+            <p class="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed">Forms, FAQs, and guides to make your visit as smooth as possible.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-32">
+            
+            <div class="bg-white rounded-2xl p-6 sm:p-12 mb-16 sm:mb-20 shadow-xl border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-6 sm:mb-8 flex items-center">
+                    <i class="fa-solid fa-clipboard-list text-blue-600 mr-3 sm:mr-4"></i> First-Time Patient Guide
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed sm:leading-loose">To ensure a smooth process and minimize your wait time, please arrive 15 minutes before your scheduled appointment and bring the following items:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
+                    <div class="flex items-center p-4 sm:p-6 bg-blue-50 rounded-xl border border-blue-100">
+                        <i class="fa-solid fa-id-card text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6 w-8 sm:w-10 text-center"></i>
+                        <span class="font-bold text-lg sm:text-xl text-gray-900">Valid Photo ID (Aadhar/PAN)</span>
+                    </div>
+                    <div class="flex items-center p-4 sm:p-6 bg-blue-50 rounded-xl border border-blue-100">
+                        <i class="fa-solid fa-shield-heart text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6 w-8 sm:w-10 text-center"></i>
+                        <span class="font-bold text-lg sm:text-xl text-gray-900">Health Insurance Card</span>
+                    </div>
+                    <div class="flex items-center p-4 sm:p-6 bg-blue-50 rounded-xl border border-blue-100">
+                        <i class="fa-solid fa-folder-open text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6 w-8 sm:w-10 text-center"></i>
+                        <span class="font-bold text-lg sm:text-xl text-gray-900">Previous Medical Records</span>
+                    </div>
+                    <div class="flex items-center p-4 sm:p-6 bg-blue-50 rounded-xl border border-blue-100">
+                        <i class="fa-solid fa-pills text-3xl sm:text-4xl text-blue-600 mr-4 sm:mr-6 w-8 sm:w-10 text-center"></i>
+                        <span class="font-bold text-lg sm:text-xl text-gray-900">Current Medication List</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-16 sm:mb-20">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-8 sm:mb-10">Frequently Asked Questions</h2>
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Are you accepting new patients?</h4>
+                        <p class="text-base sm:text-lg text-gray-600 leading-relaxed sm:leading-loose">Yes! We are proud to welcome new patients for both adult and pediatric care. You can easily schedule your first consultation online or by calling our front desk.</p>
+                    </div>
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Do you accept walk-ins?</h4>
+                        <p class="text-base sm:text-lg text-gray-600 leading-relaxed sm:leading-loose">We accept walk-ins for minor urgent care needs based on our daily availability. However, patients with scheduled appointments are always given priority, so we highly recommend booking ahead if possible.</p>
+                    </div>
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">How do I get my lab results?</h4>
+                        <p class="text-base sm:text-lg text-gray-600 leading-relaxed sm:leading-loose">Routine lab results are uploaded to our secure patient portal within 48 hours of your test. If any immediate medical action or medication adjustment is required, our clinical team will call you directly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-6 sm:mb-8">Downloadable Forms</h2>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8 sm:mb-10">Save time in the waiting room by downloading, printing, and filling out these forms at home before you arrive.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                    <a href="#" class="flex items-center p-6 sm:p-8 bg-white border-2 border-gray-200 rounded-2xl hover:border-blue-600 hover:shadow-lg transition-all group">
+                        <i class="fa-solid fa-file-pdf text-4xl sm:text-5xl text-red-500 mr-4 sm:mr-6 group-hover:text-blue-600 transition"></i>
+                        <div>
+                            <h4 class="font-bold text-xl sm:text-2xl text-gray-900 mb-1">New Patient Intake</h4>
+                            <p class="text-base sm:text-lg text-gray-500">PDF - 1.2 MB</p>
+                        </div>
+                    </a>
+                    <a href="#" class="flex items-center p-6 sm:p-8 bg-white border-2 border-gray-200 rounded-2xl hover:border-blue-600 hover:shadow-lg transition-all group">
+                        <i class="fa-solid fa-file-pdf text-4xl sm:text-5xl text-red-500 mr-4 sm:mr-6 group-hover:text-blue-600 transition"></i>
+                        <div>
+                            <h4 class="font-bold text-xl sm:text-2xl text-gray-900 mb-1">Consent for Treatment</h4>
+                            <p class="text-base sm:text-lg text-gray-500">PDF - 0.5 MB</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="contact" class="page-content hidden flex-grow bg-gray-50 pb-20 sm:pb-32">
+        <div class="page-hero-bg py-24 sm:py-32 text-center text-white relative px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6">Contact & Booking</h1>
+            <p class="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed">Get in touch or request an appointment directly online.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-32">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+                
+                <div class="bg-blue-900 p-8 sm:p-16 lg:w-2/5 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12">Clinic Info</h3>
+                        <div class="space-y-8 sm:space-y-12">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-location-dot text-3xl sm:text-4xl text-blue-400 mt-1 w-10 sm:w-12"></i>
+                                <div>
+                                    <h4 class="text-blue-200 font-bold mb-1 sm:mb-2 uppercase tracking-widest text-xs sm:text-sm">Visit Us</h4>
+                                    <p class="text-lg sm:text-xl leading-relaxed sm:leading-loose">402 Premium Hub Building,<br>Maninagar, Ahmedabad,<br>Gujarat 380008</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-phone text-3xl sm:text-4xl text-blue-400 mt-1 w-10 sm:w-12"></i>
+                                <div>
+                                    <h4 class="text-blue-200 font-bold mb-1 sm:mb-2 uppercase tracking-widest text-xs sm:text-sm">Call Us</h4>
+                                    <p class="text-xl sm:text-3xl font-extrabold">+91 98765 43210</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-envelope text-3xl sm:text-4xl text-blue-400 mt-1 w-10 sm:w-12"></i>
+                                <div>
+                                    <h4 class="text-blue-200 font-bold mb-1 sm:mb-2 uppercase tracking-widest text-xs sm:text-sm">Email</h4>
+                                    <p class="text-lg sm:text-xl break-all">hello@maninagarhealth.demo</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-clock text-3xl sm:text-4xl text-blue-400 mt-1 w-10 sm:w-12"></i>
+                                <div>
+                                    <h4 class="text-blue-200 font-bold mb-1 sm:mb-2 uppercase tracking-widest text-xs sm:text-sm">Hours</h4>
+                                    <p class="text-lg sm:text-xl leading-relaxed sm:leading-loose">Mon-Sat: 8AM - 7PM<br>Sun: Emergencies Only</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 sm:p-16 lg:w-3/5">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-gray-900">Request an Appointment</h3>
+                    <p class="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10">Fill out the form below and our administrative team will call you within 2 hours to confirm your booking.</p>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Demo Form Submitted!');" class="space-y-6 sm:space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                            <div>
+                                <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">First Name</label>
+                                <input type="text" class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition" placeholder="Rahul">
+                            </div>
+                            <div>
+                                <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Last Name</label>
+                                <input type="text" class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition" placeholder="Sharma">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                            <div>
+                                <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Phone Number</label>
+                                <input type="tel" class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition" placeholder="+91 00000 00000">
+                            </div>
+                            <div>
+                                <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Email</label>
+                                <input type="email" class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition" placeholder="rahul@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Reason for Visit</label>
+                            <select class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition bg-white">
+                                <option>General Checkup & Physical</option>
+                                <option>Pediatric Visit</option>
+                                <option>Illness / Urgent Care</option>
+                                <option>Lab Tests & Diagnostics</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                            <div>
+                                <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Preferred Date</label>
+                                <input type="date" class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Time Preference</label>
+                                <select class="w-full border-2 border-gray-200 rounded-lg py-3 sm:py-4 px-4 text-base sm:text-lg focus:ring-blue-600 focus:border-blue-600 outline-none transition bg-white">
+                                    <option>Morning (8AM - 12PM)</option>
+                                    <option>Afternoon (12PM - 4PM)</option>
+                                    <option>Evening (4PM - 7PM)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-4 sm:py-5 rounded-lg font-extrabold text-lg sm:text-xl hover:bg-blue-800 shadow-xl transition transform hover:-translate-y-1 mt-6 sm:mt-8">
+                            Submit Appointment Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-16 sm:mt-20 bg-gray-200 rounded-3xl h-[300px] sm:h-[500px] flex items-center justify-center border-4 border-white shadow-xl relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30"></div>
+                <div class="text-center bg-white p-6 sm:p-10 rounded-2xl shadow-lg relative z-10 mx-4 max-w-sm">
+                    <i class="fa-solid fa-map-location-dot text-4xl sm:text-6xl text-blue-600 mb-4 sm:mb-6"></i>
+                    <h4 class="font-extrabold text-xl sm:text-2xl text-gray-900 mb-2">Interactive Map Area</h4>
+                    <p class="text-base sm:text-lg text-gray-500">Embed your real Google Map iframe here, centered on Maninagar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-gray-50 border-t border-gray-200 pt-12 sm:pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-12">
+                
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-house-medical text-2xl text-blue-600 mr-2"></i>
+                        <h3 class="text-gray-900 text-xl font-bold tracking-tight">Maninagar<span class="text-blue-600">Health</span></h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Premium, compassionate healthcare for families across Ahmedabad. Your trusted partner in long-term wellness.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition text-lg"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition text-lg"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition text-lg"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-900 text-sm font-bold uppercase tracking-widest mb-4 sm:mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><button onclick="navigateTo('home')" class="text-gray-600 hover:text-blue-600 transition">Home</button></li>
+                        <li><button onclick="navigateTo('about')" class="text-gray-600 hover:text-blue-600 transition">Our Doctors</button></li>
+                        <li><button onclick="navigateTo('services')" class="text-gray-600 hover:text-blue-600 transition">Services</button></li>
+                        <li><button onclick="navigateTo('patient-info')" class="text-gray-600 hover:text-blue-600 transition">Patient Info</button></li>
+                        <li><button onclick="navigateTo('contact')" class="text-gray-600 hover:text-blue-600 transition">Contact</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-900 text-sm font-bold uppercase tracking-widest mb-4 sm:mb-6">Contact Info</h4>
+                    <ul class="space-y-4 text-sm text-gray-600 font-medium">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 w-5 text-blue-600"></i>
+                            <span>402 Premium Hub, Maninagar<br>Ahmedabad, Gujarat 380008</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone w-5 text-blue-600"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope w-5 text-blue-600"></i>
+                            <span class="break-all">hello@maninagarhealth.demo</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-900 text-sm font-bold uppercase tracking-widest mb-4 sm:mb-6">Working Hours</h4>
+                    <ul class="space-y-3 text-sm text-gray-600 font-medium">
+                        <li class="flex justify-between border-b border-gray-200 pb-2">
+                            <span>Mon - Fri</span>
+                            <span class="text-gray-900">8:00 AM - 7:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-200 pb-2">
+                            <span>Saturday</span>
+                            <span class="text-gray-900">9:00 AM - 2:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-red-500">
+                            <span>Sunday</span>
+                            <span>Emergencies Only</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-medium">
+                <p class="mb-4 md:mb-0 text-center sm:text-left">&copy; 2026 Maninagar Health Clinic. All rights reserved.</p>
+                <div class="flex space-x-4 sm:space-x-6">
+                    <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-600 transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
